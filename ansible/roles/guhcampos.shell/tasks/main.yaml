@@ -1,0 +1,36 @@
+---
+- name: install bash-completion
+  community.general.homebrew:
+    name: bash-completion
+    state: latest
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: link bash configuration files in $HOME
+  ansible.builtin.copy:
+    src: "{{role_path}}/files/home/{{ item.src }}"
+    dest: "{{ansible_env.HOME}}/{{ item.dest }}"
+    # state: hard
+  loop:
+    - { src: bashrc, dest: ".bashrc" }
+    - { src: bash_profile, dest: ".bash_profile" }
+    - { src: dircolors, dest: ".dircolors" }
+
+- name: create $HOME/.config/bash.d
+  ansible.builtin.file:
+    path: "{{ansible_env.HOME}}/.config/bash.d/"
+    state: directory
+
+- name: "link bash configuration files in $HOME/.config/bash.d"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ansible_env.HOME}}/.config/bash.d/{{ item | basename }}"
+  with_fileglob:
+    - "home/config/bash.d/*.sh"
+
+- name: "including platform specific tasks: [Debian]"
+  when: ansible_facts['os_family'] == "Debian"
+  ansible.builtin.import_tasks: _debian.yaml
+
+- name: "including platform specific tasks: [Darwin]"
+  when: ansible_facts['os_family'] == "Darwin"
+  ansible.builtin.import_tasks: _darwin.yaml

@@ -1,0 +1,31 @@
+---
+- name: create vim configuration directory
+  ansible.builtin.file:
+    path: "{{ansible_env.HOME}}/.vim/colors"
+    state: directory
+
+- name: ensure neovim is installed
+  when: ansible_facts['os_family'] == "Debian"
+  ansible.builtin.import_tasks: install-debian.yaml
+
+- name: link vim configuration files in $HOME
+  ansible.builtin.copy:
+    src: "{{role_path}}/files/home/vimrc"
+    dest: "{{ansible_env.HOME}}/.vimrc"
+
+- name: install vim colors
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.vim/colors/{{ item | basename }}"
+  with_fileglob:
+    - home/vim/colors/*.vim
+# - name: create .vim
+#   file: path={{ ansible_env.HOME }}/.vim/{{ item }} state=directory
+#   with_items:
+#     - autoload
+#     - bundle
+#     - colors
+
+# - name: install pathogen
+#   template: src=pathogen.vim dest={{ ansible_env.HOME }}/.vim/autoload/pathogen.vim
+

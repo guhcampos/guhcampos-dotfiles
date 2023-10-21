@@ -1,0 +1,30 @@
+---
+shell_debian_apps_apt:
+  - cargo
+  - cmake
+  - curl
+  - direnv
+  - fswatch
+  - htop
+  - lshw
+  - lsof
+  - make
+  - neovim
+  - pipx
+  - rsync
+  - silversearcher-ag
+  - tmux
+  - wget
+
+shell_debian_apps_cargo:
+  - starship
+
+shell_darwin_apps_brew:
+  - direnv
+  - fswatch
+  - htop
+  - make
+  - pipx
+  - pyenv
+  - the_silver_searcher
+  - starship

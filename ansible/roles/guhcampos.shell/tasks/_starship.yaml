@@ -1,0 +1,4 @@
+- name: template starship configuration
+  ansible.builtin.template:
+    src: home/config/starship.toml.j2
+    dest: "{{ansible_env.HOME}}/.config/starship.toml"
