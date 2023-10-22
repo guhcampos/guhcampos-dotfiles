@@ -6,6 +6,7 @@ shell_debian_apps_apt:
   - direnv
   - fswatch
   - htop
+  - jq
   - lshw
   - lsof
   - make
@@ -23,8 +24,16 @@ shell_darwin_apps_brew:
   - direnv
   - fswatch
   - htop
+  - jq
   - make
   - pipx
   - pyenv
   - the_silver_searcher
   - starship
+  - yq
+
+shell_apps_pipx:
+  - pre-commit
+
+shell_yq_download_path:
+  - https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64

@@ -13,11 +13,10 @@ _loadtheme() {
     then
         if [[ 10#$(date +%H) -gt 7 ]] && [[ 10#$(date +%H) -lt 17 ]]
             then eval base16_solarized-light
-            else eval base16_default-dark 
-        fi  
-    else eval base16_default-dark 
+            else eval base16_default-dark
+        fi
+    else eval base16_default-dark
     fi
 }
 
 _loadtheme
-

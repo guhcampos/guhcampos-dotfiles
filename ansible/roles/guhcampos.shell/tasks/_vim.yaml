@@ -28,4 +28,3 @@
 
 # - name: install pathogen
 #   template: src=pathogen.vim dest={{ ansible_env.HOME }}/.vim/autoload/pathogen.vim
-

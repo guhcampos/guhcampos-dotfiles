@@ -7,4 +7,4 @@ dclean() {
     docker rmi $(docker images -qa) > /dev/null
 }
 
-alias dc='docker-compose' 
+alias dc='docker-compose'

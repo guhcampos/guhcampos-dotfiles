@@ -1,31 +1,27 @@
 ---
-- name: install bash-completion
-  community.general.homebrew:
-    name: bash-completion
-    state: latest
-  when: ansible_facts['os_family'] == "Darwin"
+# - name: install bash-completion
+#   community.general.homebrew:
+#     name: bash-completion
+#     state: latest
+#   when: ansible_facts['os_family'] == "Darwin"
 
-- name: link bash configuration files in $HOME
-  ansible.builtin.copy:
-    src: "{{role_path}}/files/home/{{ item.src }}"
-    dest: "{{ansible_env.HOME}}/{{ item.dest }}"
-    # state: hard
-  loop:
-    - { src: bashrc, dest: ".bashrc" }
-    - { src: bash_profile, dest: ".bash_profile" }
-    - { src: dircolors, dest: ".dircolors" }
-
-- name: create $HOME/.config/bash.d
+- name: create missing directories for dotfiles
   ansible.builtin.file:
-    path: "{{ansible_env.HOME}}/.config/bash.d/"
+    path: "{{ansible_env.HOME}}/{{ item.path }}"
     state: directory
+    mode: "{{ item.mode }}"
+  tags: [dotfiles]
+  with_community.general.filetree: "home"
+  when: item.state == 'directory'
 
-- name: "link bash configuration files in $HOME/.config/bash.d"
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "{{ansible_env.HOME}}/.config/bash.d/{{ item | basename }}"
-  with_fileglob:
-    - "home/config/bash.d/*.sh"
+- name: link dotfiles to their respective directories
+  ansible.builtin.file:
+    src: "{{ item.src }}"
+    dest: "{{ansible_env.HOME}}/{{ item.path }}"
+    state: link
+  tags: [dotfiles]
+  with_community.general.filetree: "home"
+  when: item.state == 'file'
 
 - name: "including platform specific tasks: [Debian]"
   when: ansible_facts['os_family'] == "Debian"
@@ -34,3 +30,9 @@
 - name: "including platform specific tasks: [Darwin]"
   when: ansible_facts['os_family'] == "Darwin"
   ansible.builtin.import_tasks: _darwin.yaml
+
+- name: "Install python applications with pipx"
+  community.general.pipx:
+    name: "{{item}}"
+    state: latest
+  loop: "{{shell_apps_pipx}}"

@@ -17,3 +17,9 @@
   loop: "{{shell_debian_apps_cargo}}"
   become: true
   become_user: root
+
+- name: Install `yq` on Debian
+  ansible.builtin.get_url:
+    url: "{{yq_download_path}}"
+    dest: "/usr/local/bin/yq"
+    mode: "0555"
