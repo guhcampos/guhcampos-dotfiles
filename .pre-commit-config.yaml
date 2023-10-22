@@ -13,4 +13,3 @@ repos:
         name: Detect secrets
         language: python
         entry: detect-secrets-hook
-        # args: ["--baseline", ".secrets.baseline"]
