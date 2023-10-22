@@ -1,9 +1,8 @@
 ---
-# - name: install bash-completion
-#   community.general.homebrew:
-#     name: bash-completion
-#     state: latest
-#   when: ansible_facts['os_family'] == "Darwin"
+- name: block execution of the role on remote servers
+  ansible.builtin.fail:
+    msg: this role is only intended for use on a local machine
+  when: ansible_connection != "local"
 
 - name: create missing directories for dotfiles
   ansible.builtin.file:
@@ -19,6 +18,7 @@
     src: "{{ item.src }}"
     dest: "{{ansible_env.HOME}}/{{ item.path }}"
     state: link
+    force: "{{shell_force_symlinks}}"
   tags: [dotfiles]
   with_community.general.filetree: "home"
   when: item.state == 'file'

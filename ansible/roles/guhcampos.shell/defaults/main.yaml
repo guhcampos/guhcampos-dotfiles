@@ -37,3 +37,6 @@ shell_apps_pipx:
 
 shell_yq_download_path:
   - https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+
+# force ansible to overwrite existing files with symlinks
+shell_force_symlinks: false
