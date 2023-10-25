@@ -2,7 +2,7 @@
 
 if [ -f /etc/bashrc ]; then
     unset PATH
-    export PATH=$HOME/.local/bin/bin:/usr/bin:/sbin:/usr/sbin
+    export PATH=$HOME/.local/bin:/usr/bin:/sbin:/usr/sbin
     source /etc/profile /etc/bashrc
 fi
 
