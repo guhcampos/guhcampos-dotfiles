@@ -31,8 +31,8 @@
   when: ansible_facts['os_family'] == "Darwin"
   ansible.builtin.import_tasks: _darwin.yaml
 
-- name: "Install python applications with pipx"
-  community.general.pipx:
+- name: install system-wide python packages
+  ansible.builtin.pip:
     name: "{{item}}"
-    state: latest
-  loop: "{{shell_apps_pipx}}"
+  loop: "{{shell_system_python_packages}}"
+  tags: [python]

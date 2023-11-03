@@ -1,4 +1,7 @@
 ---
+shell_system_python_packages:
+  - pre-commit
+
 shell_debian_apps_apt:
   - cargo
   - cmake
@@ -11,7 +14,6 @@ shell_debian_apps_apt:
   - lsof
   - make
   - neovim
-  - pipx
   - rsync
   - silversearcher-ag
   - tmux
@@ -26,7 +28,6 @@ shell_darwin_apps_brew:
   - htop
   - jq
   - make
-  - pipx
   - pyenv
   - the_silver_searcher
   - starship
