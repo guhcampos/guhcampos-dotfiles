@@ -10,9 +10,6 @@ if [ "Darwin" == "$(uname -s)" ]; then
     export PATH=/usr/local/bin:/opt/homebrew/bin:$PATH
     export BASH_SILENCE_DEPRECATION_WARNING=1
 
-    if [[ -f /opt/homebrew/etc/bash_completion ]]; then
-        source /opt/homebrew/etc/bash_completion
-    fi
 ################################################################################
 # END MACOS-SPECIFIC-CONFIGURATION
 ################################################################################

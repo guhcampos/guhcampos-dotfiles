@@ -1,0 +1,29 @@
+[color]
+    ui = auto
+
+
+[core]
+    excludesfile = ~/.config/gitignore
+    whitespace = -trailing-space
+
+
+[diff]
+    algorithm = histogram
+
+
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[push]
+	default = current
+	autoSetupRemote = true
+
+
+
+
+[user]
+	name = Gustavo Campos
+	email = guhcampos@gmail.com

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 if [ -f /etc/bashrc ]; then
     unset PATH
     export PATH=$HOME/.local/bin:/usr/bin:/sbin:/usr/sbin
