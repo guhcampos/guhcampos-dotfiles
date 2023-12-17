@@ -20,6 +20,8 @@
 
 - name: Install `yq` on Debian
   ansible.builtin.get_url:
-    url: "{{yq_download_path}}"
+    url: "{{shell_yq_download_path}}"
     dest: "/usr/local/bin/yq"
     mode: "0555"
+  become: true
+  become_user: root

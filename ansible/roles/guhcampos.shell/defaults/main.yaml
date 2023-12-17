@@ -10,6 +10,11 @@ shell_debian_apps_apt:
   - fswatch
   - htop
   - jq
+  - libssl-dev
+  - liblzma-dev
+  - libncurses-dev
+  - libreadline-dev
+  - libsqlite3-dev
   - lshw
   - lsof
   - make
@@ -36,8 +41,7 @@ shell_darwin_apps_brew:
 shell_apps_pipx:
   - pre-commit
 
-shell_yq_download_path:
-  - https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+shell_yq_download_path: https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
 
 # force ansible to overwrite existing files with symlinks
 shell_force_symlinks: false
