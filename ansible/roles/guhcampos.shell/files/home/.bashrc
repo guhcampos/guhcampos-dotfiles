@@ -1,21 +1,11 @@
 #!/bin/bash
 
-<<<<<<< Updated upstream:ansible/roles/guhcampos.shell/files/home/.bashrc
-export BASH_SILENCE_DEPRECATION_WARNING=1
-
-if [ -f /etc/bashrc ]; then
-    unset PATH
-    export PATH=$HOME/.local/bin:/usr/bin:/sbin:/usr/sbin
-    source /etc/profile /etc/bashrc
-fi
-=======
 GUHCAMPOS_ERROR_LOG="$HOME/guhcampos-errors.log"
 
 # some of my setup depends on the existence of pyenv, this ensures it's properly
 # detected if it's available in the system, we will setup it later in the script
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
->>>>>>> Stashed changes:ansible/roles/guhcampos.shell/files/home/bashrc
 
 if [ -e "$HOME/.config/bash.d" ]; then
     for lib in "$HOME"/.config/bash.d/*.sh; do
