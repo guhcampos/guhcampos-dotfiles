@@ -1,6 +1,0 @@
----
-- name: install MacOs applications with brew
-  community.general.homebrew:
-    name: "{{item}}"
-    state: latest
-  loop: "{{shell_darwin_apps_brew}}"

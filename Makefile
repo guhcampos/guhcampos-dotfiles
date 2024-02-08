@@ -1,36 +1,38 @@
 SHELL := /bin/bash
 
-.DEFAULT_GOAL := guhcampos-home
+.DEFAULT_GOAL := guhcampos-dotfiles
 
-.PHONY: guhcampos-home
-guhcampos-home: $(HOME)/.ansible.cfg
-guhcampos-home: $(HOME)/.bash_profile
-guhcampos-home: $(HOME)/.bashrc
-guhcampos-home: $(HOME)/.config/user-dirs.dirs
-guhcampos-home: $(HOME)/.dircolors
-guhcampos-home: $(HOME)/.editorconfig
-guhcampos-home: $(HOME)/.gitconfig
-guhcampos-home: $(HOME)/.profile
-guhcampos-home: $(HOME)/.starship.toml
-guhcampos-home: $(HOME)/.tmux.conf
-guhcampos-home: $(HOME)/.vim/colors/monokai.vim
-guhcampos-home: $(HOME)/.vimrc
-guhcampos-home: $(HOME)/.config/bash.d
+.PHONY: guhcampos-dotfiles
+guhcampos-dotfiles: $(HOME)/.ansible.cfg
+guhcampos-dotfiles: $(HOME)/.bash_profile
+guhcampos-dotfiles: $(HOME)/.bashrc
+guhcampos-dotfiles: $(HOME)/.config/user-dirs.dirs
+guhcampos-dotfiles: $(HOME)/.dircolors
+guhcampos-dotfiles: $(HOME)/.editorconfig
+guhcampos-dotfiles: $(HOME)/.gitconfig
+guhcampos-dotfiles: $(HOME)/.profile
+guhcampos-dotfiles: $(HOME)/.starship.toml
+guhcampos-dotfiles: $(HOME)/.tmux.conf
+guhcampos-dotfiles: $(HOME)/.vim/colors/monokai.vim
+guhcampos-dotfiles: $(HOME)/.vimrc
+guhcampos-dotfiles: $(HOME)/.config/bash.d
 # this ensures all files in ~/config/bash.d/*.sh exist:
-guhcampos-home: $(addprefix $(HOME)/.config/bash.d/,$(notdir $(wildcard dotfiles/home/_config/bash.d/*.sh)))
+guhcampos-dotfiles: $(addprefix $(HOME)/.config/bash.d/,$(notdir $(wildcard dotfiles/home/_config/bash.d/*.sh)))
 
 $(HOME)/.config/bash.d:
 	mkdir -p $@
 
 $(HOME)/.config/bash.d/%.sh: dotfiles/home/_config/bash.d/%.sh
 $(HOME)/.config/bash.d/%.sh: $(HOME)/.config/bash.d
-	ln -sf $(realpath -s dotfiles/home/_config/bash.d/$*.sh) $@
+	@echo "GUHCAMPOS: linking $@"
+	@ln -sf $(realpath -s dotfiles/home/_config/bash.d/$*.sh) $@
 
 $(HOME)/.%: dotfiles/home/_%
-	ln -sf $(realpath -s $<) $@
+	@echo "GUHCAMPOS: linking dotfiles in $(HOME)"
+	@ln -sf $(realpath -s $<) $@
 
 .PHONY: clean
 clean:
 	rm -rf ~/.config/bash.d/*.sh
 
-include make/git.Makefile
+include $(abspath make/git.Makefile)
