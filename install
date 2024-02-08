@@ -1,0 +1,81 @@
+#!/bin/bash
+
+set -euo pipefail
+
+_TRUE="yes"
+_FALSE="no"
+
+function is_mac() {
+    _PLATFORM=$(uname -s)
+    [[ "${_PLATFORM}" = "Darwin" ]] && echo $_TRUE || echo $_FALSE
+}
+
+function is_linux() {
+    _PLATFORM=$(uname -s)
+    [[ "${_PLATFORM}" = "Linux" ]] && echo $_TRUE || echo $_FALSE
+}
+
+function has_brew() {
+    type -P brew >/dev/null && echo $_TRUE || echo $_FALSE
+}
+
+function has_make() {
+    type -P make >/dev/null && echo $_TRUE || echo $_FALSE
+}
+
+function has_starship() {
+    type -P starship >/dev/null && echo $_TRUE || echo $_FALSE
+}
+
+function install_brew() {
+    echo "GUH: ## install brew"
+    if [[ $(is_mac) == "$_TRUE" ]]; then
+        if [[ $(has_brew) == "$_FALSE" ]]; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        else
+            echo "GUH: skip installing brew, already present"
+        fi
+    else
+        echo "GUH: skip installing brew, unsupported platform"
+    fi
+}
+
+function install_make() {
+    echo "GUH: ## install make"
+    if [[ $(has_make) == "$_FALSE" ]]; then
+        echo "install_make: NOT IMPLEMENTED"
+    else
+        echo "GUH: skip installing make, already present"
+    fi
+}
+
+function install_starship() {
+    echo "GUH: ## install starship"
+    if [[ $(has_starship) == "$_FALSE" ]]; then
+        brew install starship
+    else
+        brew upgrade starship
+    fi
+}
+
+function install_dotfiles() {
+    make guhcampos-home
+}
+
+function pre_install() {
+    printf "GUH: pre-install\n"
+    printf "GUH: DEBUG: IS_MAC: %s\n" "$(is_mac)"
+    printf "GUH: DEBUG: IS_LINUX: %s\n" "$(is_linux)"
+    printf "GUH: DEBUG: HAS_BREW: %s\n" "$(has_brew)"
+}
+
+function post_install() {
+    echo "GUH: post-install"
+}
+
+pre_install
+install_brew
+install_make
+install_starship
+install_dotfiles
+post_install

@@ -16,6 +16,7 @@ function cdev_linux {
 
 function cdev_mac {
     fswatch -ro0 . \
+        -e 'bin' \
         -e '__pycache__' \
         -e '\.git' \
         -e 'out' \

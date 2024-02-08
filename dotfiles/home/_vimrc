@@ -47,4 +47,4 @@ set nobackup
 " set cindent
 " set wildmode=longest,list
 " set nofoldenable
-" "colorscheme base16-one-light
+" colorscheme base16-one-light
