@@ -32,3 +32,5 @@ $(HOME)/.%: dotfiles/home/_%
 .PHONY: clean
 clean:
 	rm -rf ~/.config/bash.d/*.sh
+
+include make/git.Makefile
