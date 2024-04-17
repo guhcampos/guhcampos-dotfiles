@@ -14,7 +14,8 @@ k8s: /opt/homebrew/bin/helm
 
 /opt/homebrew/bin/helm:
 	brew install helm
-	helm plugin install https://github.com/helm-unittest/helm-unittest.git
 	helm plugin install https://github.com/databus23/helm-diff
 	helm plugin install https://github.com/helm-unittest/helm-unittest.git
+	helm plugin install https://github.com/helm-unittest/helm-unittest.git
 	helm plugin install https://github.com/jkroepke/helm-secrets
+	helm plugin install https://github.com/jtyr/kubeconform-helm
