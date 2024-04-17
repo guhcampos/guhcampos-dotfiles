@@ -5,5 +5,3 @@ if which pyenv >/dev/null; then
 else
     echo "$(date) ERROR: 'pyenv' not found on \$PATH" >>"${GUHCAMPOS_ERROR_LOG}"
 fi
-
-export GUH_LOADED_PYTHON=1

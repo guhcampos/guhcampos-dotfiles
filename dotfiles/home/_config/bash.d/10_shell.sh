@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export GUHCAMPOS_ERROR_LOG="${HOME}/guhcampos-error.log"
+export SHELLCHECK_OPTS="-e SC2002"
 
 SHARED_PATH=${HOME}/.local/bin:/usr/sbin:/sbin:$PATH
 
@@ -12,8 +13,8 @@ function setup_linux() {
   alias du="du --max-depth=1 -h"
   alias df="df -h"
 
-  export PATH="/snap/bin:${SHARED_PATH}"
-  export GTK_IM_MODULE="cedilla"
+  PATH="/snap/bin:${SHARED_PATH}"
+  GTK_IM_MODULE="cedilla"
 
   if [[ -f /etc/bash_completion ]]; then
     source /etc/bash_completion
@@ -25,8 +26,8 @@ function setup_macos() {
   ##############################################################################
   # MAC OS SPECIFIC
   ##############################################################################
-  export BASH_SILENCE_DEPRECATION_WARNING=1
-  export PATH="/opt/homebrew/bin:${SHARED_PATH}"
+  BASH_SILENCE_DEPRECATION_WARNING=1
+  PATH="/opt/homebrew/bin:${SHARED_PATH}"
 
   alias ls="ls -G"
   alias python=python3
@@ -40,3 +41,7 @@ if [ "Darwin" == "$(uname -s)" ]; then
 elif [ "Linux" == "$(uname -s)" ]; then
   setup_linux
 fi
+
+export BASH_SILENCE_DEPRECATION_WARNING
+export PATH
+export GTK_IM_MODULE

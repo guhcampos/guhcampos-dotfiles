@@ -3,9 +3,9 @@
 
 
 [core]
+    abbrev = 7
     excludesfile = ~/.config/gitignore
     whitespace = -trailing-space
-
 
 [diff]
     algorithm = histogram
@@ -27,3 +27,5 @@
 [user]
 	name = Gustavo Campos
 	email = guhcampos@gmail.com
+[init]
+	defaultBranch = main
