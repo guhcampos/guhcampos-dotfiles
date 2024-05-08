@@ -6,6 +6,7 @@ include $(abspath make/azure.$(shell uname -s).Makefile)
 include $(abspath make/git.Makefile)
 include $(abspath make/k8s.$(shell uname -s).Makefile)
 include $(abspath make/prometheus.$(shell uname -s).Makefile)
+include $(abspath make/util.$(shell uname -s).Makefile)
 include $(abspath make/web.$(shell uname -s).Makefile)
 
 
@@ -28,6 +29,7 @@ guhcampos-dotfiles: $(HOME)/.config/bash.d
 # web development stuff
 guhcampos-dotfiles: /opt/homebrew/bin/hugo
 guhcampos-dotfiles: /opt/homebrew/bin/npx
+guhcampos-dotfiles: /opt/homebrew/bin/fzf
 # this ensures all files in ~/config/bash.d/*.sh exist:
 guhcampos-dotfiles: $(addprefix $(HOME)/.config/bash.d/,$(notdir $(wildcard dotfiles/home/_config/bash.d/*.sh)))
 
@@ -46,3 +48,12 @@ $(HOME)/.%: dotfiles/home/_%
 .PHONY: clean
 clean:
 	rm -rf ~/.config/bash.d/*.sh
+
+
+
+.PHONY: docker
+docker:
+	clear
+	@echo "HAS_PODMAN: $(HAS_PODMAN)"
+	@echo "HAS_DOCKER: $(HAS_DOCKER)"
+	@echo "CMD_DOCKER: $(CMD_DOCKER)"
