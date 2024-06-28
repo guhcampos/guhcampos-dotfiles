@@ -20,8 +20,9 @@ function cdev_mac {
         -e '__pycache__' \
         -e '\.git' \
         -e 'out' \
+        -e '.pytest_cache' \
         -e 'tmp' |
         while read -rd "" _event; do
-            zsh -c "${*}"
+            bash -c "${*}"
         done
 }

@@ -10,3 +10,5 @@ if type brew &>/dev/null; then
         done
     fi
 fi
+
+export PATH="/opt/homebrew/sbin:$PATH"
