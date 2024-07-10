@@ -27,7 +27,7 @@ function setup_macos() {
   # MAC OS SPECIFIC
   ##############################################################################
   BASH_SILENCE_DEPRECATION_WARNING=1
-  PATH="/opt/homebrew/bin:${SHARED_PATH}"
+  PATH="/opt/homebrew/bin:$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${SHARED_PATH}"
 
   alias ls="ls -G"
   alias python=python3

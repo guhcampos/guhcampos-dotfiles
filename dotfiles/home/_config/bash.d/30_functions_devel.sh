@@ -23,6 +23,7 @@ function cdev_mac {
         -e '.pytest_cache' \
         -e 'tmp' |
         while read -rd "" _event; do
+            echo "# $(date) > ${*}"
             bash -c "${*}"
         done
 }
