@@ -16,12 +16,12 @@ function cdev_linux {
 
 function cdev_mac {
     fswatch -ro0 . \
-        -e 'bin' \
-        -e '__pycache__' \
-        -e '\.git' \
-        -e 'out' \
-        -e '.pytest_cache' \
-        -e 'tmp' |
+        -e 'bin$' \
+        -e '__pycache__$' \
+        -e '\.git$' \
+        -e 'out$' \
+        -e '.pytest_cache$' \
+        -e 'tmp$' |
         while read -rd "" _event; do
             echo "# $(date) > ${*}"
             bash -c "${*}"

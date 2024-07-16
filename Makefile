@@ -27,6 +27,7 @@ guhcampos-dotfiles: $(HOME)/.tmux.conf
 guhcampos-dotfiles: $(HOME)/.vim/colors/monokai.vim
 guhcampos-dotfiles: $(HOME)/.vimrc
 guhcampos-dotfiles: $(HOME)/.config/bash.d
+guhcampos-dotfiles: $(HOME)/.config/cookiecutter.yaml
 guhcampos-dotfiles: $(HOME)/.config/direnv
 guhcampos-dotfiles: $(HOME)/.config/direnv/direnvrc
 ################################################################################
