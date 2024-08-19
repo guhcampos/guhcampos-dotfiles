@@ -1,6 +1,5 @@
 SHELL := /bin/bash
 include $(abspath make/tools/1password.$(shell uname -s).Makefile)
-include $(abspath make/tools/ansible.$(shell uname -s).Makefile)
 include $(abspath make/tools/aws.$(shell uname -s).Makefile)
 include $(abspath make/tools/azure.$(shell uname -s).Makefile)
 include $(abspath make/tools/git.Makefile)
@@ -10,6 +9,7 @@ include $(abspath make/tools/util.$(shell uname -s).Makefile)
 include $(abspath make/tools/web.$(shell uname -s).Makefile)
 include $(abspath make/workstations/python-workstation.$(shell uname -s).Makefile)
 include $(abspath make/workstations/javascript-workstation.$(shell uname -s).Makefile)
+include $(abspath make/workstations/ansible-workstation.$(shell uname -s).Makefile)
 
 .DEFAULT_GOAL := guhcampos-dotfiles
 
@@ -23,6 +23,7 @@ guhcampos-dotfiles: $(HOME)/.editorconfig
 guhcampos-dotfiles: $(HOME)/.gitconfig
 guhcampos-dotfiles: $(HOME)/.profile
 guhcampos-dotfiles: $(HOME)/.starship.toml
+guhcampos-dotfiles: $(HOME)/.tfswitch.toml
 guhcampos-dotfiles: $(HOME)/.tmux.conf
 guhcampos-dotfiles: $(HOME)/.vim/colors/monokai.vim
 guhcampos-dotfiles: $(HOME)/.vimrc
@@ -35,6 +36,7 @@ guhcampos-dotfiles: $(HOME)/.config/direnv/direnvrc
 ################################################################################
 guhcampos-dotfiles: | guhcampos-python-workstation
 guhcampos-dotfiles: | guhcampos-javascript-workstation
+guhcampos-dotfiles: | guhcampos-ansible-workstation
 # this ensures all files in ~/config/bash.d/*.sh exist:
 guhcampos-dotfiles: $(addprefix $(HOME)/.config/bash.d/,$(notdir $(wildcard dotfiles/home/_config/bash.d/*.sh)))
 
