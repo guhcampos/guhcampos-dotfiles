@@ -3,7 +3,7 @@
 function cdev {
     # this is my poor-man-version of a live-reload to leave running on a directory
     # while I change its contents, so I can see the results in realtime
-    if [[ $(uname -s) == "Darwin" ]]; then
+    if [[ "Darwin" = $(uname -s) ]]; then
         cdev_mac $*
     else
         cdev_linux $*

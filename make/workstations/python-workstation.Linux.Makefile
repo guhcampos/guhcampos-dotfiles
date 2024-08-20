@@ -1,5 +1,5 @@
-PIPX_PATH  := /opt/homebrew/bin/pipx
-PYENV_PATH := /opt/homebrew/bin/pyenv
+PIPX_PATH  := /usr/bin/pipx
+PYENV_PATH := /home/gustavo/.pyenv/bin/pyenv
 
 guhcampos-python-workstation: \
 	$(PYENV_PATH) \
@@ -10,10 +10,10 @@ pipx: | $(PIPX_PATH)
 pyenv: | $(PYENV_PATH)
 
 $(PYENV_PATH):
-	brew install pyenv
+	curl https://pyenv.run | bash
 
 $(PIPX_PATH):
-	brew install pipx
+	sudo apt install pipx
 
 ${HOME}/.local/bin/poetry:
 	pipx install poetry

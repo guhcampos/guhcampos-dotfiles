@@ -1,15 +1,21 @@
 SHELL := /bin/bash
+include $(abspath make/tools/shell.$(shell uname -s).Makefile)
+include $(abspath make/tools/git.Makefile)
+include $(abspath make/workstations/python-workstation.$(shell uname -s).Makefile)
+include $(abspath make/workstations/ansible-workstation.Makefile)
+
+# these workstations are only supported on Mac so far because I don't generally
+# need them on Linux or didn't prioritize it otherwise
+ifeq (Darwin, $(shell uname -s))
 include $(abspath make/tools/1password.$(shell uname -s).Makefile)
 include $(abspath make/tools/aws.$(shell uname -s).Makefile)
 include $(abspath make/tools/azure.$(shell uname -s).Makefile)
-include $(abspath make/tools/git.Makefile)
 include $(abspath make/tools/k8s.$(shell uname -s).Makefile)
 include $(abspath make/tools/prometheus.$(shell uname -s).Makefile)
+include $(abspath make/workstations/javascript-workstation.$(shell uname -s).Makefile)
 include $(abspath make/tools/util.$(shell uname -s).Makefile)
 include $(abspath make/tools/web.$(shell uname -s).Makefile)
-include $(abspath make/workstations/python-workstation.$(shell uname -s).Makefile)
-include $(abspath make/workstations/javascript-workstation.$(shell uname -s).Makefile)
-include $(abspath make/workstations/ansible-workstation.$(shell uname -s).Makefile)
+endif
 
 .DEFAULT_GOAL := guhcampos-dotfiles
 
@@ -31,12 +37,16 @@ guhcampos-dotfiles: $(HOME)/.config/bash.d
 guhcampos-dotfiles: $(HOME)/.config/cookiecutter.yaml
 guhcampos-dotfiles: $(HOME)/.config/direnv
 guhcampos-dotfiles: $(HOME)/.config/direnv/direnvrc
-################################################################################
-# web development
-################################################################################
+# workstations are similar to bundles of related tools I've logically put together
+# to make it easier on myself
+guhcampos-dotfiles: | guhcampos-shell
 guhcampos-dotfiles: | guhcampos-python-workstation
-guhcampos-dotfiles: | guhcampos-javascript-workstation
 guhcampos-dotfiles: | guhcampos-ansible-workstation
+
+ifeq (Darwin, $(shell uname -s))
+guhcampos-dotfiles: | guhcampos-javascript-workstation
+endif
+
 # this ensures all files in ~/config/bash.d/*.sh exist:
 guhcampos-dotfiles: $(addprefix $(HOME)/.config/bash.d/,$(notdir $(wildcard dotfiles/home/_config/bash.d/*.sh)))
 
@@ -53,12 +63,14 @@ $(HOME)/.config/direnv:
 
 $(HOME)/.%: dotfiles/home/_%
 	@echo "GUHCAMPOS: linking dotfiles in $(HOME)"
+	@mkdir -p $(HOME)/.vim/colors
 	@ln -sf $(realpath -s $<) $@
 
 .PHONY: clean
 clean:
 	rm -rf ~/.config/bash.d/*.sh
 
+# a small hack to favor `podman` over `docker` if it's present on the machine
 .PHONY: docker
 docker:
 	clear
