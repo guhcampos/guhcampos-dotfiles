@@ -17,6 +17,3 @@ $(PIPX_PATH):
 
 ${HOME}/.local/bin/poetry:
 	pipx install poetry
-
-
-
