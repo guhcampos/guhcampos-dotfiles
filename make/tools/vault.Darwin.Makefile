@@ -1,2 +1,2 @@
-/opt/homebrew/bin/vault:
-	brew install vault
+/opt/homebrew/bin/vault: $(BREW_PATH)
+	$(BREW_PATH) install vault

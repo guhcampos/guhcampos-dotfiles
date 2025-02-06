@@ -9,11 +9,12 @@ guhcampos-python-workstation: \
 pipx: | $(PIPX_PATH)
 pyenv: | $(PYENV_PATH)
 
-$(PYENV_PATH):
-	brew install pyenv
+$(PYENV_PATH): $(BREW_PATH)
+	$(BREW_PATH) install pyenv
 
-$(PIPX_PATH):
-	brew install pipx
+$(PIPX_PATH): $(BREW_PATH)
+	$(BREW_PATH) install pipx
 
-${HOME}/.local/bin/poetry:
-	pipx install poetry
+${HOME}/.local/bin/poetry: \
+	$(PIPX_PATH)
+	$(PIPX_PATH) install poetry

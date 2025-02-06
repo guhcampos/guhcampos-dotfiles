@@ -9,8 +9,8 @@ guhcampos-ansible-workstation: | ansible-mitogen
 ansible:         | $(ANSIBLE_PATH)
 ansible-mitogen: | $(MITOGEN_PATH)/mitogen/__init__.py
 
-$(ANSIBLE_PATH): | pipx
-	pipx install --include-deps ansible==$(ANSIBLE_VERSION)
+$(ANSIBLE_PATH): | $(PIPX_PATH)
+	$(PIPX_PATH) install --include-deps ansible==$(ANSIBLE_VERSION)
 
 $(MITOGEN_PATH)/mitogen/__init__.py:
 	git clone $(MITOGEN_REPO) $(HOME)/.ansible/plugins/mitogen/

@@ -6,14 +6,14 @@ k8s: /opt/homebrew/bin/kubelogin
 k8s: /opt/homebrew/bin/kubie
 k8s: /opt/homebrew/bin/helm
 
-/opt/homebrew/bin/kubie:
-	brew install kubie
+/opt/homebrew/bin/kubie: $(BREW_PATH)
+	$(BREW_PATH) install kubie
 
-/opt/homebrew/bin/kubeconform:
-	brew install kubeconform
+/opt/homebrew/bin/kubeconform: $(BREW_PATH)
+	$(BREW_PATH) install kubeconform
 
-/opt/homebrew/bin/helm:
-	brew install helm
+/opt/homebrew/bin/helm: $(BREW_PATH)
+	$(BREW_PATH) install helm
 	helm plugin install https://github.com/databus23/helm-diff
 	helm plugin install https://github.com/helm-unittest/helm-unittest.git
 	helm plugin install https://github.com/helm-unittest/helm-unittest.git

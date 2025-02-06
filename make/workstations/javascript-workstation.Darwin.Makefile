@@ -4,11 +4,11 @@ guhcampos-javascript-workstation: \
 	/opt/homebrew/bin/npx \
 	/opt/homebrew/opt/nvm/nvm.sh
 
-/opt/homebrew/bin/npm:
-	brew install npm
+/opt/homebrew/bin/npm: $(BREW_PATH)
+	$(BREW_PATH) install npm
 
-/opt/homebrew/bin/npx:
-	brew install npx
+/opt/homebrew/bin/npx: $(BREW_PATH)
+	$(BREW_PATH) install npx
 
-/opt/homebrew/opt/nvm/nvm.sh:
-	brew install nvm
+/opt/homebrew/opt/nvm/nvm.sh: $(BREW_PATH)
+	$(BREW_PATH) install nvm

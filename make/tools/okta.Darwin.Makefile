@@ -1,2 +1,2 @@
-/opt/homebrew/bin/okta:
-	brew install --cask oktadeveloper/tap/okta
+/opt/homebrew/bin/okta: $(BREW_PATH)
+	$(BREW_PATH) install --cask oktadeveloper/tap/okta
