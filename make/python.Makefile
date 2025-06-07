@@ -1,14 +1,8 @@
 ifeq (Linux, $(shell uname -s))
-# PIPX_PATH  := /usr/bin/pipx
-# PYENV_PATH := /home/gustavo/.pyenv/bin/pyenv
-# UV_PATH := /usr/bin/uv
 include $(abspath make/python.Linux.Makefile)
 endif
 
 ifeq (Darwin, $(shell uname -s))
-# PIPX_PATH  := /opt/homebrew/bin/pipx
-# PYENV_PATH := /opt/homebrew/bin/pyenv
-# UV_PATH := /opt/homebrew/bin/uv
 include $(abspath make/python.Darwin.Makefile)
 endif
 

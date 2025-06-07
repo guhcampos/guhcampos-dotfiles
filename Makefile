@@ -7,8 +7,8 @@ include $(abspath make/aws.$(shell uname -s).Makefile)
 include $(abspath make/azure.$(shell uname -s).Makefile)
 include $(abspath make/k8s.$(shell uname -s).Makefile)
 include $(abspath make/prometheus.$(shell uname -s).Makefile)
-include $(abspath make/util.$(shell uname -s).Makefile)
 include $(abspath make/web.$(shell uname -s).Makefile)
+include $(abspath make/utils.Makefile)
 include $(abspath make/python.Makefile)
 
 
@@ -35,6 +35,7 @@ guhcampos-dotfiles: $(HOME)/.config/direnv/direnvrc
 
 guhcampos-dotfiles: | guhcampos-shell
 guhcampos-dotfiles: | guhcampos-python
+guhcampos-dotfiles: | guhcampos-utils
 
 
 
