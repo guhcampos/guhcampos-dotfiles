@@ -1,17 +1,16 @@
 SHELL := /bin/bash
 
-include $(abspath make/shell.$(shell uname -s).Makefile)
-include $(abspath make/git.Makefile)
 include $(abspath make/1password.$(shell uname -s).Makefile)
 include $(abspath make/aws.$(shell uname -s).Makefile)
 include $(abspath make/azure.$(shell uname -s).Makefile)
+include $(abspath make/git.Makefile)
 include $(abspath make/k8s.$(shell uname -s).Makefile)
 include $(abspath make/ollama.$(shell uname -s).Makefile)
 include $(abspath make/prometheus.$(shell uname -s).Makefile)
-include $(abspath make/web.$(shell uname -s).Makefile)
-include $(abspath make/utils.Makefile)
 include $(abspath make/python.Makefile)
-
+include $(abspath make/shell.$(shell uname -s).Makefile)
+include $(abspath make/utils.Makefile)
+include $(abspath make/web.$(shell uname -s).Makefile)
 
 .DEFAULT_GOAL := guhcampos-dotfiles
 
