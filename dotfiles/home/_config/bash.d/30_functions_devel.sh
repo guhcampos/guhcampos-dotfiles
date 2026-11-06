@@ -4,7 +4,7 @@ function cdev {
     # this is my poor-man-version of a live-reload to leave running on a directory
     # while I change its contents, so I can see the results in realtime
     if [[ "Darwin" = $(uname -s) ]]; then
-        cdev_mac $*
+        watchexec $*
     else
         cdev_linux $*
     fi
@@ -17,14 +17,14 @@ function cdev_linux {
 }
 
 function cdev_mac {
-    fswatch -ro0 . \
+    fswatch -l1 -ro . \
         -e 'bin$' \
         -e '__pycache__$' \
         -e '\.git$' \
         -e 'out$' \
         -e '.pytest_cache$' \
         -e 'tmp$' |
-        while read -rd "" _event; do
+        while read _; do
             echo "# $(date) > ${*}"
             bash -c "${*}"
         done

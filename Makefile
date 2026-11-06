@@ -33,11 +33,13 @@ guhcampos-dotfiles: $(HOME)/.config/bash.d
 guhcampos-dotfiles: $(HOME)/.config/cookiecutter.yaml
 guhcampos-dotfiles: $(HOME)/.config/direnv
 guhcampos-dotfiles: $(HOME)/.config/direnv/direnvrc
+guhcampos-dotfiles: $(HOME)/.zshrc
+
+guhcampos-dotfiles: $(HOME)/AGENTS.md
 
 guhcampos-dotfiles: | guhcampos-shell
 guhcampos-dotfiles: | guhcampos-python
 guhcampos-dotfiles: | guhcampos-utils
-
 
 
 # this ensures all files in ~/config/bash.d/*.sh exist:
@@ -57,6 +59,10 @@ $(HOME)/.config/direnv:
 $(HOME)/.%: dotfiles/home/_%
 	@echo "GUHCAMPOS: linking dotfiles in $(HOME)"
 	@mkdir -p $(HOME)/.vim/colors
+	@ln -sf $(realpath -s $<) $@
+
+$(HOME)/AGENTS.md: dotfiles/home/AGENTS.md
+	@echo "GUHCAMPOS: linking AGENTS.md in $(HOME)"
 	@ln -sf $(realpath -s $<) $@
 
 .PHONY: clean

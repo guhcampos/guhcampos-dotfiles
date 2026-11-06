@@ -1,31 +1,42 @@
+[user]
+	name = Gustavo Campos
+	email = guhcampos@users.noreply.github.com
+
 [color]
     ui = auto
-
 
 [core]
     abbrev = 7
     excludesfile = ~/.config/gitignore
     whitespace = -trailing-space
+	hooksPath = /Users/gustavo/.config/git/hooks
 
 [diff]
     algorithm = histogram
-
-
+	tool = vimdiff
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [push]
 	default = current
 	autoSetupRemote = true
 
-
-
-
-[user]
-	name = Gustavo Campos
-	email = guhcampos@users.noreply.github.com
 [init]
 	defaultBranch = main
+
+[includeIf "gitdir:/Users/gustavo/workspace/upwork/"]
+    path = /Users/gustavo/workspace/upwork/.gitconfig
+
+[pull]
+	rebase = true
+
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential

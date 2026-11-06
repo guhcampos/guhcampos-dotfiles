@@ -2,3 +2,8 @@
 if [[ -f "$HOME"/.bashrc ]]; then
     source "$HOME"/.bashrc
 fi
+
+alias assume=". assume"
+export PATH="$PATH:"
+
+export PATH="$HOME/.local/bin:$HOME/.docker/bin:$PATH"

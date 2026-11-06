@@ -2,6 +2,7 @@
 
 export GUHCAMPOS_ERROR_LOG="${HOME}/guhcampos-error.log"
 export SHELLCHECK_OPTS="-e SC2002"
+export LC_ALL="en_US.UTF-8"
 
 SHARED_PATH=${HOME}/.local/bin:/usr/sbin:/sbin:$PATH
 
@@ -34,6 +35,9 @@ function setup_macos() {
 
   # detect and export brew environment variables
   # type -P brew >/dev/null && eval "$(/opt/homebrew/bin/brew shellenv)"
+  [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
 }
 
 if [ "Darwin" == "$(uname -s)" ]; then

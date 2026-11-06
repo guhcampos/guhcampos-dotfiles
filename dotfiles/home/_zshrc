@@ -1,0 +1,8 @@
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/gustavo/.lmstudio/bin"
+# End of LM Studio CLI section
+
+
+# Load OpenCode environment (managed by opencode-install.sh)
+source /Users/gustavo/.opencode.env

@@ -18,3 +18,5 @@ fi
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export GUH_LOADED_BASHRC
+# opencode
+export PATH=/Users/gustavo/.opencode/bin:$PATH

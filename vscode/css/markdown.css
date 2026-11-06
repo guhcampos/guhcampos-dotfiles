@@ -1,0 +1,40 @@
+/* Monokai Color Palette for VS Code Markdown Preview */
+body {
+    background-color: #272822 !important; /* Classic Monokai Dark Background */
+    color: #F8F8F2 !important;            /* Off-white text */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Headings mapped to vibrant Monokai accents */
+h1 { color: #F92672 !important; border-bottom: 1px solid #3E3D32; } /* Vibrant Pink */
+h2 { color: #A6E22E !important; border-bottom: 1px solid #3E3D32; } /* Bright Green */
+h3 { color: #66D9EF !important; }                                  /* Light Blue */
+h4 { color: #E6DB74 !important; }                                  /* Soft Yellow */
+h5 { color: #AE81FF !important; }                                  /* Amethyst Purple */
+h6 { color: #FD971F !important; }                                  /* Vivid Orange */
+
+/* Inline text elements */
+strong, b { color: #F92672 !important; font-weight: bold; }        /* Bold is Pink */
+em, i { color: #A6E22E !important; font-style: italic; }           /* Italics are Green */
+a { color: #66D9EF !important; text-decoration: none; }            /* Links are Blue */
+a:hover { text-decoration: underline; }
+
+/* Inline code and blockquotes */
+code:not([class]) {
+    background-color: #49483E !important;
+    color: #E6DB74 !important;                                     /* Inline code is Yellow */
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+blockquote {
+    background-color: #3E3D32 !important;
+    border-left: 4px solid #AE81FF !important;                     /* Purple border */
+    color: #CED2D3 !important;
+    padding: 10px;
+}
+
+/* Lists and dividers */
+li::marker { color: #FD971F !important; }                         /* List bullets are Orange */
+hr { border: 0; height: 1px; background: #3E3D32 !important; }
+
